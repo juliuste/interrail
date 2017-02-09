@@ -1,0 +1,39 @@
+{
+  "name": "interrail",
+  "description": "Find european train stations and routes. Client for the European Interrail / EuRail API.",
+  "version": "0.1.0",
+  "keywords": [
+  	"railway",
+  	"train",
+  	"api",
+  	"europe",
+  	"european",
+  	"bahn",
+  	"interrail",
+  	"eurail"
+  ],
+  "author": "Julius Tens <mail@juliustens.de>",
+  "homepage": "https://github.com/juliuste/interrail",
+  "repository": "juliuste/interrail",
+  "bugs": "https://github.com/juliuste/interrail/issues",
+  "main": "index.js",
+  "files": [
+    "index.js",
+    "lib/*"
+  ],
+  "dependencies": {
+    "got": "^6.7.1",
+    "moment-timezone": "^0.5.11"
+  },
+  "devDependencies": {
+    "tape": "^4.6.3"
+  },
+  "scripts": {
+    "test": "node test.js",
+    "prepublish": "npm test"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "license": "MIT"
+}
