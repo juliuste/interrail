@@ -20,7 +20,7 @@ npm install interrail
 const interrail = require('interrail')
 ```
 
-The `interrail` module bundles two methods: [`locations()`](#locations) and [`routes()`](#routes).
+The `interrail` module bundles two methods: `locations()` and `routes()`.
 
 ### locations(name)
 
@@ -34,14 +34,14 @@ would give you
 
 ```json
 [{
-	name: 'BERLIN (Germany)',
-	id: 8062648,
-	coords: {
-		lon: 13.386943,
-		lat: 52.520555
+	"name": "BERLIN (Germany)",
+	"id": 8062648,
+	"coords": {
+		"lon": 13.386943,
+		"lat": 52.520555
 	},
-	weight: 32718,
-	products: 62
+	"weight": 32718,
+	"products": 62
 }, …]
 
 ```
@@ -63,27 +63,27 @@ would give you
 
 ```json
 [{
-	parts: [{
-		from: {
-			name: 'BERLIN HBF (TIEF) (Germany)',
-			id: 8031922,
-			coords: {
-				lon: 13.369441,
-				lat: 52.525553
+	"parts": [{
+		"from": {
+			"name": "BERLIN HBF (TIEF) (Germany)",
+			"id": 8031922,
+			"coords": {
+				"lon": 13.369441,
+				"lat": 52.525553
 			}
 		},
-		to: {
-			name: 'BRECLAV (Czech Republic)',
-			id: 5433425,
-			coords: {
-				lon: 16.896943,
-				lat: 48.758057
+		"to": {
+			"name": "BRECLAV (Czech Republic)",
+			"id": 5433425,
+			"coords": {
+				"lon": 16.896943,
+				"lat": 48.758057
 			}
 		},
-		departure: '2017-02-09T19:01:00+01:00',
-		arrival: '2017-02-10T03:47:00+01:00',
-		line: 'EN   477',
-		operator: 'DB Vertrieb GmbH' }
+		"departure": "2017-02-09T19:01:00+01:00",
+		"arrival": "2017-02-10T03:47:00+01:00",
+		"line": "EN   477",
+		"operator": "DB Vertrieb GmbH"
 	}, …]
 }, …]
 ```
