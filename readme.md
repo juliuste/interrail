@@ -60,7 +60,7 @@ interrail.journeys(
 ```
 
 Find journeys between A and B for a given datetime. Returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise) that will resolve with an array of `journey`s in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format) which looks as follows.
-*Note that the legs are not fully spec-compatible, as `id` and `schedule` are missing.*
+*Note that the journey and legs are not fully spec-compatible, as `id` and `schedule` are missing.*
 
 ```js
 [
