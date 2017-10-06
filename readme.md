@@ -1,5 +1,7 @@
 # interrail
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/juliuste/interrail.svg)](https://greenkeeper.io/)
+
 Find european train stations and journeys. Client for the European [Interrail](http://interrail.eu) / EuRail API. Complies with the [friendly public transport format](https://github.com/public-transport/friendly-public-transport-format).
 
 [![npm version](https://img.shields.io/npm/v/interrail.svg)](https://www.npmjs.com/package/interrail)
