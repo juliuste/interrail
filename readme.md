@@ -1,6 +1,6 @@
 # interrail
 
-Find european train stations and journeys. Client for the European [Interrail](http://interrail.eu) / EuRail API. Complies with the [friendly public transport format](https://github.com/public-transport/friendly-public-transport-format).
+Find european train stations and journeys. Client for the European [Interrail](http://interrail.eu) / EuRail API. Complies with the [friendly public transport format](https://github.com/public-transport/friendly-public-transport-format). Inofficial, using endpoints by *Interrail/EuRail*. Ask them for permission before using this module in production.
 
 [![npm version](https://img.shields.io/npm/v/interrail.svg)](https://www.npmjs.com/package/interrail)
 [![Build Status](https://travis-ci.org/juliuste/interrail.svg?branch=master)](https://travis-ci.org/juliuste/interrail)
