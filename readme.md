@@ -4,6 +4,7 @@ Find european train stations and journeys. Client for the European [Interrail](h
 
 [![npm version](https://img.shields.io/npm/v/interrail.svg)](https://www.npmjs.com/package/interrail)
 [![Build Status](https://travis-ci.org/juliuste/interrail.svg?branch=master)](https://travis-ci.org/juliuste/interrail)
+[![Greenkeeper badge](https://badges.greenkeeper.io/juliuste/interrail.svg)](https://greenkeeper.io/)
 [![dependency status](https://img.shields.io/david/juliuste/interrail.svg)](https://david-dm.org/juliuste/interrail)
 [![dev dependency status](https://img.shields.io/david/dev/juliuste/interrail.svg)](https://david-dm.org/juliuste/interrail#info=devDependencies)
 [![license](https://img.shields.io/github/license/juliuste/interrail.svg?style=flat)](LICENSE)
