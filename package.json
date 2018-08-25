@@ -22,13 +22,13 @@
     "lib/*"
   ],
   "dependencies": {
-    "fetch-ponyfill": "^5.0.0",
-    "moment-timezone": "^0.5.11",
+    "fetch-ponyfill": "^6.0.2",
+    "moment-timezone": "^0.5.21",
     "pinkie-promise": "^2.0.1",
-    "query-string": "^6.0.0"
+    "query-string": "^6.1.0"
   },
   "devDependencies": {
-    "tape": "^4.7.0"
+    "tape": "^4.9.1"
   },
   "scripts": {
     "test": "node test.js",
