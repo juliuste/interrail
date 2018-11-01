@@ -1,26 +1,33 @@
 {
   "name": "interrail",
-  "description": "Find european train stations and routes. Client for the European Interrail / EuRail API.",
   "version": "1.0.1",
+  "description": "Find european train stations and routes. Client for the European Interrail / EuRail API.",
   "keywords": [
-    "railway",
-    "train",
     "api",
+    "bahn",
+    "eurail",
     "europe",
     "european",
-    "bahn",
     "interrail",
-    "eurail"
+    "railway",
+    "train"
   ],
-  "author": "Julius Tens <mail@juliustens.eu>",
   "homepage": "https://github.com/juliuste/interrail",
-  "repository": "juliuste/interrail",
   "bugs": "https://github.com/juliuste/interrail/issues",
-  "main": "index.js",
+  "repository": "juliuste/interrail",
+  "license": "ISC",
+  "author": "Julius Tens <mail@juliustens.eu>",
   "files": [
-    "index.js",
     "lib/*"
   ],
+  "main": "lib/index.js",
+  "scripts": {
+    "check-deps": "depcheck",
+    "fix": "eslint --fix lib test.js",
+    "lint": "eslint lib test.js",
+    "prepublishOnly": "npm test",
+    "test": "npm run lint && npm run check-deps && node test"
+  },
   "dependencies": {
     "fetch-ponyfill": "^6.0.2",
     "moment-timezone": "^0.5.21",
@@ -28,14 +35,17 @@
     "query-string": "^6.1.0"
   },
   "devDependencies": {
-    "tape": "^4.9.1"
-  },
-  "scripts": {
-    "test": "node test.js",
-    "prepublishOnly": "npm test"
+    "depcheck": "^0.6.11",
+    "eslint": "^5.8.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "tape": "^4.9.1",
+    "tape-promise": "^4.0.0"
   },
   "engines": {
     "node": ">=8"
-  },
-  "license": "ISC"
+  }
 }
