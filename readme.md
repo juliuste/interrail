@@ -1,14 +1,14 @@
 # interrail
 
-Find european train stations and journeys. Client for the European [Interrail](http://interrail.eu) / EuRail API. Complies with the [friendly public transport format](https://github.com/public-transport/friendly-public-transport-format). Inofficial, using endpoints by *Interrail/EuRail*. Ask them for permission before using this module in production.
+Find european train stations and journeys. Client for the European [Interrail](http://interrail.eu) / EuRail API. Inofficial, using endpoints by *Interrail/EuRail*. Ask them for permission before using this module in production.
 
 [![npm version](https://img.shields.io/npm/v/interrail.svg)](https://www.npmjs.com/package/interrail)
 [![Build Status](https://travis-ci.org/juliuste/interrail.svg?branch=master)](https://travis-ci.org/juliuste/interrail)
 [![Greenkeeper badge](https://badges.greenkeeper.io/juliuste/interrail.svg)](https://greenkeeper.io/)
 [![dependency status](https://img.shields.io/david/juliuste/interrail.svg)](https://david-dm.org/juliuste/interrail)
-[![dev dependency status](https://img.shields.io/david/dev/juliuste/interrail.svg)](https://david-dm.org/juliuste/interrail#info=devDependencies)
 [![license](https://img.shields.io/github/license/juliuste/interrail.svg?style=flat)](LICENSE)
-[![chat on gitter](https://badges.gitter.im/juliuste.svg)](https://gitter.im/juliuste)
+[![fptf version](https://fptf.badges.juliustens.eu/badge/juliuste/interrail)](https://fptf.badges.juliustens.eu/link/juliuste/interrail)
+[![chat on gitter](https://badges.gitter.im/public-transport.svg)](https://gitter.im/public-transport)
 
 ## Installation
 
@@ -22,78 +22,146 @@ npm install interrail
 const interrail = require('interrail')
 ```
 
-The `interrail` module bundles two methods: `stations()` and `journeys()`. Complies with the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format).
+The `interrail` module exposes two methods:
+
+- `stations(query)` to get a list of stations matching the given search query
+- `journeys(origin, destination, opt)` to get journeys between two stations at a given date
+
+Returns data in the [friendly public transport format `1.2.0`](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0).
 
 ### `stations(query)`
 
+Find stations by name.
+
 ```js
-interrail.stations('Berlin').then(…)
+interrail.stations('Ljubl').then(…)
 ```
 
-Find stations by name. Returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise) that will resolve in an array of `station`s in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format) which looks as follows:
+Returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise) that will resolve in an array of `station`s in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0) which looks as follows:
 
 ```js
 [
 	{
-		type: 'station'
-		name: 'BERLIN (Germany)',
-		id: 8062648,
-		coordinates: {
-			longitude: 13.386943,
-			latitude: 52.520555
+		"type": "station",
+		"id": "7942300",
+		"name": "LJUBLJANA (Slovenia)",
+		"location": {
+			"type": "location",
+			"longitude": 14.51028,
+			"latitude": 46.058057
 		},
-		weight: 32718,
-		products: 62
+		"weight": 12185,
+		"products": 28
 	}
 	// …
 ]
-
 ```
 
-### `journeys(originID, destinationID, datetime)`
+### `journeys(origin, destination, opt)`
+
+Find journeys between stations. `origin` and `destinations` can either be station `id`s or FPTF `station` objects. `opt` partially overwrites `defaults`, which looks like this:
 
 ```js
-interrail.journeys(
-	8065969, // Berlin
-	7942300, // Ljubljana
-	new Date("2017-02-09T19:00:00+01:00")
-).then(…)
+const defaults = {
+	when: new Date(), // date of the journey
+	language: 'en'
+}
 ```
 
-Find journeys between A and B for a given datetime. Returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise) that will resolve with an array of `journey`s in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format) which looks as follows.
-*Note that the journey and legs are not fully spec-compatible, as `id` and `schedule` are missing.*
+Example usage:
+
+```js
+const berlin = '8065969' // station id
+const ljubljana = { // FPTF station
+	type: 'station',
+	id: '7942300',
+	name: 'Ljubljana'
+	// …
+}
+
+interrail.journeys(berlin, ljubljana, { when: new Date('2018-11-02T05:00:00+0200') }).then(…)
+```
+
+Returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise) that will resolve with an array of `journey`s in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0) which looks as follows:
 
 ```js
 [
 	{
-		type: 'journey'
-		legs: [
+		"id": "8065969-2018-11-02t06-37-00…",
+		"legs": [
 			{
-				origin: {
-					type: 'station',
-					name: 'BERLIN HBF (TIEF) (Germany)',
-					id: 8031922,
-					coordinates: {
-						longitude: 13.369441,
-						latitude: 52.525553
-					}
+				"arrival": "2018-11-02T06:54:00+01:00",
+				"departure": "2018-11-02T06:37:00+01:00",
+				"destination": {
+					"id": "8003025",
+					"location": {
+						"latitude": 52.534722,
+						"longitude": 13.196947,
+						"type": "location"
+					},
+					"name": "BERLIN-SPANDAU (Germany)",
+					"type": "station"
 				},
-				destination: {
-					type: 'station',
-					name: 'BRECLAV (Czech Republic)',
-					id: 5433425,
-					coordinates: {
-						longitude: 16.896943,
-						latitude: 48.758057
-					}
+				"id": "8065969-2018-11-02t06-37-00-01-00-8003025-2018-11-02t06-54-00-01-00-rb-18604",
+				"line": {
+					"id": "rb-18604",
+					"mode": "train",
+					"name": "RB 18604",
+					"public": true,
+					"type": "line"
 				},
-				departure: '2017-02-09T19:01:00+01:00', // JS Date() object
-				arrival: '2017-02-10T03:47:00+01:00', // JS Date() object
-				line: 'EN   477', // nice formatting, I know… but thats how the API returns it
-				operator: 'DB Vertrieb GmbH'
+				"mode": "train",
+				"operator": "interrail",
+				"origin": {
+					"id": "8065969",
+					"location": {
+						"latitude": 52.525553,
+						"longitude": 13.369441,
+						"type": "location"
+					},
+					"name": "BERLIN HBF (Germany)",
+					"type": "station"
+				},
+				"public": true
 			}
 			// …
-		]
+			{
+				"arrival": "2018-11-02T18:32:00+01:00",
+				"departure": "2018-11-02T12:17:00+01:00",
+				"destination": {
+					"id": "7942300",
+					"location": {
+						"latitude": 46.058057,
+						"longitude": 14.51028,
+						"type": "location"
+					},
+					"name": "LJUBLJANA (Slovenia)",
+					"type": "station"
+				},
+				"id": "8020347-2018-11-02t12-17-00-01-00-7942300-2018-11-02t18-32-00-01-00-ec-113",
+				"line": {
+					"id": "ec-113",
+					"mode": "train",
+					"name": "EC   113",
+					"public": true,
+					"type": "line"
+				},
+				"mode": "train",
+				"operator": "interrail",
+				"origin": {
+					"id": "8020347",
+					"location": {
+						"latitude": 48.140274,
+						"longitude": 11.55833,
+						"type": "location"
+					},
+					"name": "MUENCHEN HBF (Germany)",
+					"type": "station"
+				},
+				"public": true
+			}
+		],
+		"type": "journey"
 	}
 	// …
 ]
@@ -101,4 +169,4 @@ Find journeys between A and B for a given datetime. Returns a [Promise](https://
 
 ## Contributing
 
-If you found a bug, want to propose a feature or feel the urge to complain about your life, feel free to visit [the issues page](https://github.com/juliuste/interrail/issues).
+If you found a bug or want to propose a feature, feel free to visit [the issues page](https://github.com/juliuste/interrail/issues).
