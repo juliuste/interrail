@@ -3,7 +3,7 @@
 const tapeWithoutPromise = require('tape')
 const addPromiseSupport = require('tape-promise').default
 const tape = addPromiseSupport(tapeWithoutPromise)
-const moment = require('moment-timezone')
+const { DateTime } = require('luxon')
 const validate = require('validate-fptf')()
 const interrail = require('.')
 
@@ -28,7 +28,7 @@ tape('interrail.journeys', async t => {
 		type: 'station',
 		id: '7942300'
 	}
-	const when = moment.tz('Europe/Berlin').add(10, 'days').startOf('day').add(5, 'hours').toDate()
+	const when = DateTime.fromJSDate(new Date(), { zone: 'Europe/Berlin' }).plus({ days: 10 }).startOf('day').plus({ hours: 5 }).toJSDate()
 	const journeys = await interrail.journeys(berlin, ljubljana, { when })
 
 	t.ok(journeys.length >= 2, 'number of journeys')
