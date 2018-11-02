@@ -1,6 +1,6 @@
 {
 	"name": "interrail",
-	"version": "1.0.1",
+	"version": "2.0.0",
 	"description": "Find european train stations and routes. Client for the European Interrail / EuRail API.",
 	"keywords": [
 		"api",
