@@ -2,6 +2,8 @@
 
 Find european train stations and journeys. Client for the European [Interrail](http://interrail.eu) / EuRail API. Inofficial, using endpoints by *Interrail/EuRail*. Ask them for permission before using this module in production.
 
+This module conforms to the [FPTI-JS `0.3.2` standard](https://github.com/public-transport/fpti-js/tree/0.3.2) for JavaScript public transportation modules.
+
 [![npm version](https://img.shields.io/npm/v/interrail.svg)](https://www.npmjs.com/package/interrail)
 [![Build Status](https://travis-ci.org/juliuste/interrail.svg?branch=master)](https://travis-ci.org/juliuste/interrail)
 [![Greenkeeper badge](https://badges.greenkeeper.io/juliuste/interrail.svg)](https://greenkeeper.io/)
@@ -22,22 +24,30 @@ npm install interrail
 const interrail = require('interrail')
 ```
 
-The `interrail` module exposes two methods:
+The `interrail` module conforms to the [FPTI-JS `0.3.2` standard](https://github.com/public-transport/fpti-js/tree/0.3.2) for JavaScript public transportation modules and exposes the following methods:
 
-- `stations(query)` to get a list of stations matching the given search query
-- `journeys(origin, destination, opt)` to get journeys between two stations at a given date
+Method | Feature description | [FPTI-JS `0.3.2`](https://github.com/public-transport/fpti-js/tree/0.3.2)
+-------|---------------------|--------------------------------------------------------------------
+[`stations.search(query, [opt])`](#stationssearchquery-opt) | Search stations by *query*. | [✅ yes](https://github.com/public-transport/fpti-js/blob/0.3.2/docs/stations-stops-regions.search.md)
+[`journeys(origin, destination, [opt])`](#journeysorigin-destination-opt) | Journeys between stations | [✅ yes](https://github.com/public-transport/fpti-js/blob/0.3.2/docs/journeys.md)
 
-Returns data in the [friendly public transport format `1.2.0`](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0).
+---
 
-### `stations(query)`
+### `stations.search(query, [opt])`
 
-Find stations by name.
+Search stations by *query*. See [this method in the FPTI-JS `0.3.2` spec](https://github.com/public-transport/fpti-js/blob/0.3.2/docs/stations-stops-regions.search.md).
+
+#### Supported Options
+
+Attribute | Description | FPTI-spec | Value type | Default
+----------|-------------|------------|------------|--------
+`results` | Max. number of results returned | ✅ | `Number` | `null`
+
+#### Example
 
 ```js
-interrail.stations('Ljubl').then(…)
+interrail.stations.search('Ljubl', { results: 1 }).then(…)
 ```
-
-Returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise) that will resolve in an array of `station`s in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0) which looks as follows:
 
 ```js
 [
@@ -53,22 +63,27 @@ Returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Refe
 		"weight": 12185,
 		"products": 28
 	}
-	// …
 ]
 ```
 
-### `journeys(origin, destination, opt)`
+---
 
-Find journeys between stations. `origin` and `destinations` can either be station `id`s or FPTF `station` objects. `opt` partially overwrites `defaults`, which looks like this:
+### `journeys(origin, destination, [opt])`
 
-```js
-const defaults = {
-	when: new Date(), // date of the journey
-	language: 'en'
-}
-```
+Find journeys between stations. See [this method in the FPTI-JS `0.3.2` spec](https://github.com/public-transport/fpti-js/blob/0.3.2/docs/journeys.md).
 
-Example usage:
+#### Supported Options
+
+Attribute | Description | FPTI-spec | Value type | Default
+----------|-------------|------------|------------|--------
+`when` | Journey date, synonym to `departureAfter` | ✅ | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/date) | `new Date()`
+`departureAfter` | List journeys with a departure (first leg) after this date | ✅ | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/date) | `new Date()`
+`results` | Max. number of results returned | ✅ | `Number` | `null`
+`interval` | Results for how many minutes after / before `when` (depending on `whenRepresents`) | ✅ | `Number` | `null`
+`transfers` | Max. number of transfers | ✅ | `Number` | `null`
+`language` | Language of the results | ❌ | [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) | `null`
+
+#### Example
 
 ```js
 const berlin = '8065969' // station id
@@ -81,8 +96,6 @@ const ljubljana = { // FPTF station
 
 interrail.journeys(berlin, ljubljana, { when: new Date('2018-11-02T05:00:00+0200') }).then(…)
 ```
-
-Returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/promise) that will resolve with an array of `journey`s in the [*Friendly Public Transport Format*](https://github.com/public-transport/friendly-public-transport-format/tree/1.2.0) which looks as follows:
 
 ```js
 [
