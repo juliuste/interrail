@@ -9,7 +9,7 @@ This module conforms to the [FPTI-JS `0.3.2` standard](https://github.com/public
 [![Greenkeeper badge](https://badges.greenkeeper.io/juliuste/interrail.svg)](https://greenkeeper.io/)
 [![dependency status](https://img.shields.io/david/juliuste/interrail.svg)](https://david-dm.org/juliuste/interrail)
 [![license](https://img.shields.io/github/license/juliuste/interrail.svg?style=flat)](LICENSE)
-[![fptf version](https://fptf.badges.juliustens.eu/badge/juliuste/interrail)](https://fptf.badges.juliustens.eu/link/juliuste/interrail)
+[![fpti-js version](https://fpti-js.badges.juliustens.eu/badge/juliuste/interrail)](https://fpti-js.badges.juliustens.eu/link/juliuste/interrail)
 [![chat on gitter](https://badges.gitter.im/public-transport.svg)](https://gitter.im/public-transport)
 
 ## Installation
