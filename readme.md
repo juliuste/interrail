@@ -79,7 +79,7 @@ Attribute | Description | FPTI-spec | Value type | Default
 `when` | Journey date, synonym to `departureAfter` | ✅ | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/date) | `new Date()`
 `departureAfter` | List journeys with a departure (first leg) after this date | ✅ | [`Date`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/date) | `new Date()`
 `results` | Max. number of results returned | ✅ | `Number` | `null`
-`interval` | Results for how many minutes after / before `when` (depending on `whenRepresents`) | ✅ | `Number` | `null`
+`interval` | Results for how many minutes after `when`/`departureAfter` | ✅ | `Number` | `null`
 `transfers` | Max. number of transfers | ✅ | `Number` | `null`
 `language` | Language of the results | ❌ | [ISO 639-1 code](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) | `null`
 
