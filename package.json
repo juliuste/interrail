@@ -37,7 +37,7 @@
 		"slugg": "^1.2.1"
 	},
 	"devDependencies": {
-		"depcheck": "^0.7.2",
+		"depcheck": "^0.8.0",
 		"eslint": "^5.16.0",
 		"eslint-config-standard": "^12.0.0",
 		"eslint-plugin-import": "^2.17.2",
