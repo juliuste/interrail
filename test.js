@@ -60,7 +60,7 @@ tape('interrail.journeys', async t => {
 	t.ok(directJourneys.length === 0, 'number of direct journeys')
 
 	const twoTransferJourneys = await interrail.journeys(berlin, ljubljana, { when, transfers: 2 })
-	t.ok(twoTransferJourneys.length < journeys.length, 'number of 1-transfer journeys')
+	t.ok(twoTransferJourneys.length <= journeys.length, 'number of 1-transfer journeys')
 	t.ok(twoTransferJourneys.length > 0, 'number of 1-transfer journeys')
 
 	const fewJourneys = await interrail.journeys(berlin, ljubljana, { departureAfter: when, results: 2 })
