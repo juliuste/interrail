@@ -21,7 +21,7 @@ tape('interrail.stations.search', async t => {
 	const stations = await interrail.stations.search('Berlin')
 
 	t.ok(stations.length > 5, 'number of stations')
-	for (let station of stations) {
+	for (const station of stations) {
 		validate(station)
 		t.ok(station.id.slice(0, 2) === '80', 'id')
 		t.ok(station.id.length === 7, 'id')
@@ -46,12 +46,12 @@ tape('interrail.journeys', async t => {
 	const journeys = await interrail.journeys(berlin, ljubljana, { when })
 
 	t.ok(journeys.length >= 2, 'number of journeys')
-	for (let journey of journeys) {
+	for (const journey of journeys) {
 		validate(journey)
 		t.ok(journey.legs[0].origin.name.toLowerCase().includes('berlin'), 'origin')
 		t.ok(journey.legs[journey.legs.length - 1].destination.name.toLowerCase().includes('ljubljana'), 'destination')
 		t.ok(journey.legs.find(l => l.line), 'leg with line found')
-		for (let leg of journey.legs) {
+		for (const leg of journey.legs) {
 			if (leg.line) validate(leg.line)
 		}
 	}
