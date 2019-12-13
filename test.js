@@ -42,6 +42,11 @@ tape('interrail.journeys', async t => {
 		id: '7942300',
 		name: 'Ljubljana'
 	}
+	const hamburg = {
+		type: 'station',
+		id: '8002710',
+		name: 'Hamburg'
+	}
 	const when = DateTime.fromJSDate(new Date(), { zone: 'Europe/Berlin' }).plus({ days: 10 }).startOf('day').plus({ hours: 5 }).toJSDate()
 	const journeys = await interrail.journeys(berlin, ljubljana, { when })
 
@@ -68,7 +73,7 @@ tape('interrail.journeys', async t => {
 
 	const twoDaysLater = DateTime.fromJSDate(when).plus({ days: 2 }).toJSDate()
 	const threeDays = 3 * 24 * 60
-	const manyJourneys = await interrail.journeys(ljubljana, berlin, { when, interval: threeDays })
+	const manyJourneys = await interrail.journeys(hamburg, berlin, { when, interval: threeDays })
 	t.ok(manyJourneys.length > 10, 'number of journeys')
 	const journeysTwoDaysLater = manyJourneys.filter(j => +new Date(j.legs[0].departure) > +twoDaysLater)
 	t.ok(journeysTwoDaysLater.length >= 2, 'number of journeys')
