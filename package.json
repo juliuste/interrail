@@ -17,6 +17,9 @@
 	"repository": "juliuste/interrail",
 	"license": "ISC",
 	"author": "Julius Tens <mail@juliustens.eu>",
+	"contributors": [
+		"Pepijn Schoen <pepijn@eliandor.com>"
+	],
 	"files": [
 		"lib/*"
 	],
