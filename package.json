@@ -36,7 +36,7 @@
 		"fpti-util": "^0.1.0",
 		"lodash": "^4.17.15",
 		"luxon": "^1.21.3",
-		"query-string": "^6.9.0",
+		"query-string": "^6.11.0",
 		"slugg": "^1.2.1"
 	},
 	"devDependencies": {
