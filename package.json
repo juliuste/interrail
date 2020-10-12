@@ -20,10 +20,10 @@
 	"contributors": [
 		"Pepijn Schoen <pepijn@eliandor.com>"
 	],
+	"main": "lib/index.js",
 	"files": [
 		"lib/*"
 	],
-	"main": "lib/index.js",
 	"scripts": {
 		"check-deps": "depcheck",
 		"fix": "eslint --fix lib test.js",
