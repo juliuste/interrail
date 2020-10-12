@@ -40,12 +40,12 @@ tape('interrail.journeys', async t => {
 	const ljubljana = {
 		type: 'station',
 		id: '7942300',
-		name: 'Ljubljana'
+		name: 'Ljubljana',
 	}
 	const hamburg = {
 		type: 'station',
 		id: '8002710',
-		name: 'Hamburg'
+		name: 'Hamburg',
 	}
 	const when = DateTime.fromJSDate(new Date(), { zone: 'Europe/Berlin' }).plus({ days: 10 }).startOf('day').plus({ hours: 5 }).toJSDate()
 	const journeys = await interrail.journeys(berlin, ljubljana, { when })
