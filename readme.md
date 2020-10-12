@@ -6,8 +6,6 @@ This module conforms to the [FPTI-JS `0.3.2` standard](https://github.com/public
 
 [![npm version](https://img.shields.io/npm/v/interrail.svg)](https://www.npmjs.com/package/interrail)
 [![Build Status](https://travis-ci.org/juliuste/interrail.svg?branch=master)](https://travis-ci.org/juliuste/interrail)
-[![Greenkeeper badge](https://badges.greenkeeper.io/juliuste/interrail.svg)](https://greenkeeper.io/)
-[![dependency status](https://img.shields.io/david/juliuste/interrail.svg)](https://david-dm.org/juliuste/interrail)
 [![license](https://img.shields.io/github/license/juliuste/interrail.svg?style=flat)](LICENSE)
 [![fpti-js version](https://fpti-js.badges.juliustens.eu/badge/juliuste/interrail)](https://fpti-js.badges.juliustens.eu/link/juliuste/interrail)
 [![chat on gitter](https://badges.gitter.im/public-transport.svg)](https://gitter.im/public-transport)
